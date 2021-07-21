@@ -8,6 +8,8 @@
 import UIKit
 import Alamofire
 import Combine
+import Core
+import Recipe
 
 class HomeViewController: UIViewController {
 
@@ -15,13 +17,20 @@ class HomeViewController: UIViewController {
 
     @IBOutlet weak var navigationItemHome: UINavigationItem!
     
-    private var randomMenuOffline: [MenuModel] = []
+    private var randomMenuOffline: [RecipeDomainModel] = []
     
     private var errorMessage: String = ""
     private var loadingState: Bool = false
+    private var errorState: Bool = false
     private var cancellables: Set<AnyCancellable> = []
     
-    var presenter: HomePresenter?
+    var presenter: GetListPresenter<
+      Any, RecipeDomainModel, Interactor<
+        Any, [RecipeDomainModel], GetCategoriesRepository<
+          GetRecipeLocalDataSource, GetRecipesRemoteDataSource, RecipeTransformer
+        >
+      >
+    >?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,16 +56,21 @@ class HomeViewController: UIViewController {
 
     private func getCategories() {
         loadingState = true
-        presenter?.getCategories().receive(on: RunLoop.main).sink { completion in
-            switch completion {
-            case .finished:
-                self.loadingState = false
-            case .failure(_):
-                self.errorMessage = String(describing: completion)
-            }
-        } receiveValue: { (result) in
+        presenter?.$list.receive(on: RunLoop.main).sink { result in
             self.randomMenuOffline = result
             self.tvHome.reloadData()
+        }.store(in: &cancellables)
+
+        presenter?.$errorMessage.receive(on: RunLoop.main).sink { error in
+            self.errorMessage = String(describing: error)
+        }.store(in: &cancellables)
+
+        presenter?.$isLoading.receive(on: RunLoop.main).sink { loading in
+            self.loadingState = loading
+        }.store(in: &cancellables)
+
+        presenter?.$isError.receive(on: RunLoop.main).sink { error in
+            self.errorState = error
         }.store(in: &cancellables)
     }
 }
@@ -105,8 +119,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             let dest = segue.destination as! DetailRecipeViewController
             let row = (sender as! NSIndexPath).row
             dest.recipeId = randomMenuOffline[row].id ?? 654812
-            dest.presenter?.router = presenter?.homeRouter
-            dest.presenter = presenter?.homeRouter?.navigateToDetailModule()
+//            let router: HomeRouter  = HomeRouter()
+//            dest.presenter = router.navigateToDetailModule()
           //  dest.recipeIdNew = randomMenuOffline[row].id ?? 654812
         }
     }
