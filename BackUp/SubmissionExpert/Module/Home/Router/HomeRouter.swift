@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import Core
 import Recipe
+import Combine
 
 //Implement with Protocol Delegate
 protocol HomeRouterDelegate  {
@@ -23,14 +24,9 @@ class HomeRouter: HomeRouterDelegate {
         let homeVC = storyboard.instantiateViewController(identifier: "HomeViewController") as! HomeViewController
         
         let recipeUseCase: Interactor<Any, [RecipeDomainModel], GetCategoriesRepository<GetRecipeLocalDataSource, GetRecipesRemoteDataSource, RecipeTransformer>> = Injection().provideCategory()
-        
-        let homeUseCase = Injection().provideHomeUseCase()
-        let presenter = HomePresenter(useCase: recipeUseCase, homeRouter: HomeRouter())
-        
+
+        let presenter = GetListPresenter(useCase: recipeUseCase)
         homeVC.presenter = presenter
-        homeVC.presenter?.homeRouter = HomeRouter()
-        homeVC.presenter?.homeView = homeVC
-        
         return homeVC
     }
     

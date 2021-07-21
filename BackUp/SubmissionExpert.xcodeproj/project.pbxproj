@@ -10,7 +10,6 @@
 		5200DE642658BB2000F8C830 /* MenuMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5200DE632658BB2000F8C830 /* MenuMapper.swift */; };
 		5200DE672658D5DC00F8C830 /* HomeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5200DE662658D5DC00F8C830 /* HomeInteractor.swift */; };
 		5200DE6B2658DDD500F8C830 /* Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5200DE6A2658DDD500F8C830 /* Injection.swift */; };
-		5200DE6F2658E02C00F8C830 /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5200DE6E2658E02C00F8C830 /* HomePresenter.swift */; };
 		521890882653D43B00783413 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521890872653D43B00783413 /* AppDelegate.swift */; };
 		5218908A2653D43B00783413 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521890892653D43B00783413 /* SceneDelegate.swift */; };
 		5218908C2653D43B00783413 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5218908B2653D43B00783413 /* HomeViewController.swift */; };
@@ -66,7 +65,6 @@
 		5200DE632658BB2000F8C830 /* MenuMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuMapper.swift; sourceTree = "<group>"; };
 		5200DE662658D5DC00F8C830 /* HomeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInteractor.swift; sourceTree = "<group>"; };
 		5200DE6A2658DDD500F8C830 /* Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injection.swift; sourceTree = "<group>"; };
-		5200DE6E2658E02C00F8C830 /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
 		521890842653D43B00783413 /* SubmissionExpert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SubmissionExpert.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		521890872653D43B00783413 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		521890892653D43B00783413 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -145,7 +143,6 @@
 			isa = PBXGroup;
 			children = (
 				52A9C20C267B5CE0003C6872 /* Router */,
-				526353CB265525D900B615D1 /* Presenter */,
 				526353CA265525D300B615D1 /* View */,
 			);
 			path = Home;
@@ -411,14 +408,6 @@
 				52561BD0265BC734002148E3 /* HomeNavigationViewController.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		526353CB265525D900B615D1 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				5200DE6E2658E02C00F8C830 /* HomePresenter.swift */,
-			);
-			path = Presenter;
 			sourceTree = "<group>";
 		};
 		526353CD2655260D00B615D1 /* View */ = {
@@ -693,7 +682,6 @@
 				52561BCE265BC228002148E3 /* DetailPresenter.swift in Sources */,
 				52EEA0E926675E9A0062770C /* MenuDetailRes.swift in Sources */,
 				52FFDE78269AF277000A76C9 /* SearchViewCell.swift in Sources */,
-				5200DE6F2658E02C00F8C830 /* HomePresenter.swift in Sources */,
 				5218908A2653D43B00783413 /* SceneDelegate.swift in Sources */,
 				52FA7FB0265CF3B7007F8836 /* IngridientResponse.swift in Sources */,
 				5200DE6B2658DDD500F8C830 /* Injection.swift in Sources */,
